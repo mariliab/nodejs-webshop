@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    background: rgb(240,240,240);
+}
+main {
+    padding: 0 1rem;
+}
+h1 {
+    color: black;
+}
+
+.link-wrapper {
+    text-align: center;
+}
+.link-wrapper a {
+    font-size: 150%;
+    background:black;
+    color: white;
+    padding: 1rem 3rem;
+    text-decoration: none;
+}
+.link-wrapper a:hover {
+    background: black;
+}
+button {
+    font-size: 150%;
+    background: black;
+    color: white;
+    padding: 1rem 3rem;
+    border: none;
+}
+button:hover {
+    background: black;
+}
+input {
+    font-size: 150%;
+    padding: 1rem;
+    border: 0;
+    color: black;
+    border-bottom: 2px solid black;
+}
