@@ -3,9 +3,22 @@ const express = require('express');
 const router = express.Router();
 
 //controllers
-const productsController = require('../controllers/products');
+const shopController = require('../controllers/shop');
+const cartController = require('../controllers/cart');
 
 // / => GET
-router.get('/', productsController.getAllProducts);
+router.get('/', shopController.getAllProducts);
+
+// / => GET
+router.get('/product-list', shopController.getAllProducts);
+
+// / => GET STARTPAGE
+router.get('/', shopController.getStartPage);
+
+// / => GET CART
+router.get('/cart', shopController.getCart);
+
+// / => GET CHECKOUT PAGE
+router.get('/checkout');
 
 module.exports = router; 

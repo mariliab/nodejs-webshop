@@ -5,7 +5,15 @@
                 <a href="/" class="<%= path === '/' ? 'active' : ''%>">Shop</a>
             </li>
             <li class="main-header-item">
-                <a href="/admin/add-product" class="<%= path === '/admin/add-product' ? 'active' : ''%>">Add product</a>
+                <a href="/shop/product-list" class="<%= path === '/shop/product-list' ? 'active' : ''%>">Products</a>
+            </li>
+            <li class="main-header-item">
+                <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>">Admin</a>
+            </li>
+        </ul>
+        <ul class="right-main-header-item-list">
+            <li class="main-header-item">
+                <a href="/cart" class="<%= path === '/cart' ? 'active' : ''%>">Cart</a>
             </li>
         </ul>
     </nav>

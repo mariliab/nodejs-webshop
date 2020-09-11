@@ -1,4 +1,4 @@
-header {
+header.main-header {
     padding: 1rem;
     border-bottom: 2px solid black;
     background: white;
@@ -9,29 +9,34 @@ ul {
     margin: 0 -1rem;
 }
 
-.main-header .main-header-item {
+.main-header-nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+header.main-header .main-header-item {
     list-style: none;
     padding: 0 1rem;
 }
 
-.main-header .main-header-item :not(:first-child) {
+header.main-header .main-header-item :not(:first-child) {
     padding-left: 0 !important;
 }
 
-.main-header .main-header-item a {
+header.main-header .main-header-item a {
     text-transform: uppercase;
     padding: 0.25rem 0.5rem;
     font-size: 75%;
     color: black;
     text-decoration: none;
 }
-.main-header .main-header-item a.active {
+header.main-header .main-header-item a.active {
     color: white;
     background: black;
     border-radius: 0.25rem;
 }
 
-.main-header .main-header-item a:hover {
+header.main-header .main-header-item a:hover {
     background: black;
     color: white;
     border-radius: 0.25rem;

@@ -1,11 +1,45 @@
 body {
     margin: 0;
     background: rgb(240,240,240);
+    font-family: 'Open Sans', sans-serif;
+}
+h1, h2, h3, h4, h5, h6, button {
+    font-family: 'Exo 2', sans-serif;
 }
 main {
     padding: 0 1rem;
 }
 h1 {
+    color: black;
+}
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+}
+.link-button-wrapper {
+    padding: 0.5rem 0;
+}
+.link-button-wrapper a {
+    border: 2px solid;
+    color: black;
+    padding: 0.5rem 2rem;
+    text-decoration: none;
+    font-weight: bold;
+}
+.link-button-wrapper a.primary-cta {
+    border: 2px solid;
+    background: black;
+    color:white;
+    padding: 0.5rem 2rem;
+    text-decoration: none;
+    font-weight: bold;
+}
+.link-button-wrapper a:hover {
+    background: black;
+    color:white;
+}
+.link-button-wrapper a.primary-cta:hover {
+    background: white;
     color: black;
 }
 
@@ -32,10 +66,27 @@ button {
 button:hover {
     background: black;
 }
+form#add-product {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    align-items: stretch;
+}
+
 input {
+    flex-grow: 1;
     font-size: 150%;
     padding: 1rem;
     border: 0;
     color: black;
-    border-bottom: 2px solid black;
+    border: 1px solid black;
+}
+
+button[type="submit"] {
+    flex-grow: 1;
+}
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
