@@ -23,10 +23,11 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.getAllProducts = (req, res, next) => {
-    const products = Product.fetchAll();
-    //console.log("getAllProducts: " + JSON.stringify(products));
-    res.render('shop', {
-        pageTitle: 'Shop', 
-        path: '/',
-        products: products})
+    Product.fetchAll(products => {
+        res.render('shop', {
+            pageTitle: 'Shop', 
+            path: '/',
+            products: products}
+        );
+    });
 };
