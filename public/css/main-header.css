@@ -16,7 +16,7 @@ ul {
     margin: 0 auto;
 }
 
-header.main-header .main-header-item {
+header.main-header .main-header-item, .main-header-item-icon {
     list-style: none;
     padding: 0 1rem;
 }

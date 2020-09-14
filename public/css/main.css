@@ -118,6 +118,9 @@ button.primary:hover {
         padding-left: 1rem;
         padding-right: 1rem;
     }
+    .row {
+        flex-wrap: wrap;
+    }
 }
 
 

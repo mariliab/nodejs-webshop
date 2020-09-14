@@ -6,25 +6,25 @@
                 <a href="/" class="<%= path === '/' ? 'active' : ''%>">Shop</a>
             </li>
             <li class="main-header-item">
-                <a href="/shop/products" class="<%= path === '/shop/products' ? 'active' : ''%>">Products</a>
+                <a href="/shop/products" class="<%= path === '/products' ? 'active' : ''%>">Products</a>
             </li>
             <li class="main-header-item">
-                <a href="/shop/orders" class="<%= path === '/shop/orders' ? 'active' : ''%>">Orders</a>
+                <a href="/shop/orders" class="<%= path === '/orders' ? 'active' : ''%>">Orders</a>
             </li>
             <li class="main-header-item">
                 <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>">Admin</a>
             </li>
         </ul>
         <ul class="right-main-header-item-list">
-            <li class="main-header-item">
-                <a href="/shop/cart" class="<%= path === '/shop/cart' ? 'active' : ''%>">Cart</a>
+            <li class="main-header-item-icon">
+                <a href="/shop/cart" class="<%= path === '/cart' ? 'active' : ''%>"><img height="16" width="16" src="/zondicons/location-shopping.svg" /></a>
             </li>
         </ul>
     </nav>
 
     <div id="mobile-menu-toggle">
-        <div id="mobile-menu-toggle-button">Menu</div>
-        <div id="mobile-menu-close-button">Close</div>
+        <div id="mobile-menu-toggle-button"><img height="16" width="16" src="/zondicons/menu.svg" /></div>
+        <a href="/shop/cart" class="<%= path === '/cart' ? 'active' : ''%>"><img height="16" width="16" src="/zondicons/location-shopping.svg" /></a>
     </div>
     <nav class="mobile-main-header-nav">
         <ul class="mobile-main-header-item-list">
@@ -39,9 +39,6 @@
             </li>
             <li class="mobile-main-header-item">
                 <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>">Admin</a>
-            </li>
-            <li class="mobile-main-header-item">
-                <a href="/shop/cart" class="<%= path === '/shop/cart' ? 'active' : ''%>">Cart</a>
             </li>
         </ul>
     </nav>

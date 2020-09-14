@@ -10,13 +10,18 @@
             <div class="lg-col-6 xs-col-12 product-detail-image">
                 <img src="<%= product.image %>" alt="<%= product.title %>"></img>
             </div>
-            <div class="lg-col-6 xs-col-12 product-detail-description">
+            <div class="lg-col-6 xs-col-12 product-detail-information">
                 <h1 class="product-title"><%= product.title %> <span class="product-price"><%= product.price %> SEK</span></h1>
-                <p><%= product.description %></p>
-                <form accept="/shop/add-to-cart" method="POST">
+                <p class="product-detail-description"><%= product.description %>   
+                </p>
+                <button class="see-more-button">See more</button>
+                <form action="/shop/add-to-cart" method="POST">
                     <button class="primary" type="submit">Add to cart</button>
+                    <input type="hidden" name="productId" value="<%= product.id %>">
                 </form>
             </div>
         </div>
     </main>
+    
+<script src="/js/product.js"></script>
 <%- include('../includes/end.ejs') %>

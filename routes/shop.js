@@ -20,6 +20,9 @@ router.get('/orders', shopController.getOrders);
 // / => GET CART
 router.get('/cart', shopController.getCart);
 
+// / => POST ADD TO CART
+router.post('/add-to-cart', shopController.addToCart);
+
 // / => GET CHECKOUT PAGE
 router.get('/checkout', shopController.getCheckout);
 
