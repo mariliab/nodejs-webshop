@@ -21,10 +21,13 @@ module.exports = class Product {
     constructor(product){
         this.title = product.title,
         this.image = product.image,
-        this.price = product.price
+        this.price = product.price,
+        this.description = product.description,
+        this.created = new Date();
     }
 
     save() {
+        this.id = Math.random().toString();
         getProductsFromFile(products => {
             products.push(this);
             fs.writeFile(filePath, JSON.stringify(products), (err) => {
@@ -35,5 +38,12 @@ module.exports = class Product {
 
     static fetchAll(callback) {
         getProductsFromFile(callback);
+    };
+ 
+    static fetchProduct(id, callback) {
+        getProductsFromFile(products => {
+            const productItem = products.find(product => product.id == id);
+            callback(productItem);
+        });
     };
 }

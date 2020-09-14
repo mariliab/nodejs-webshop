@@ -3,14 +3,22 @@ body {
     background: rgb(240,240,240);
     font-family: 'Open Sans', sans-serif;
 }
+
 h1, h2, h3, h4, h5, h6, button {
     font-family: 'Exo 2', sans-serif;
 }
+textarea, input {
+    font-family: 'Open Sans', sans-serif; 
+}
 main {
-    padding: 0 1rem;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 h1 {
     color: black;
+    margin-top: 0;
+    font-weight: normal;
 }
 .page-heading {
     display: flex;
@@ -25,6 +33,7 @@ h1 {
     padding: 0.5rem 2rem;
     text-decoration: none;
     font-weight: bold;
+    border-radius: 5px;
 }
 .link-button-wrapper a.primary-cta {
     border: 2px solid;
@@ -56,37 +65,59 @@ h1 {
 .link-wrapper a:hover {
     background: black;
 }
-button {
-    font-size: 150%;
+button.primary {    
+    height: 50px;
+    font-size: 100%;
     background: black;
     color: white;
-    padding: 1rem 3rem;
+    padding: 0rem 3rem;
     border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
-button:hover {
-    background: black;
-}
-form#add-product {
-    display: flex;
-    justify-content: space-around;
-    flex-flow: row wrap;
-    align-items: stretch;
-}
-
-input {
-    flex-grow: 1;
-    font-size: 150%;
-    padding: 1rem;
-    border: 0;
+button.primary:hover {
+    background: white;
+    border: 2px solid black;
     color: black;
-    border: 1px solid black;
 }
 
-button[type="submit"] {
-    flex-grow: 1;
-}
 .page-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
+/* Column layout */
+
+.row {
+    display: flex;
+    /* flex-wrap: wrap; */
+    margin-right: -1rem;
+    margin-left: -1rem;
+}
+.row>[class^=col-] {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+}
+
+@media screen and (min-width: 992px) {
+    .lg-col-6 {
+        -webkit-box-flex: 0;
+        flex: auto;
+        max-width: 50%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+}
+@media screen and (max-width: 991px) {
+    .xs-col-12 {
+        -webkit-box-flex: 0;
+        flex: auto;
+        max-width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+

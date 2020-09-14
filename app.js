@@ -21,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routes
 app.use('/admin', adminRoutes);
 app.use('/shop', shopRoutes);
+app.use('/', shopRoutes);
 app.use(errorController.get404Page);
 
 app.listen(port);

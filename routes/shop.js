@@ -4,21 +4,23 @@ const router = express.Router();
 
 //controllers
 const shopController = require('../controllers/shop');
-const cartController = require('../controllers/cart');
-
-// / => GET
-router.get('/', shopController.getAllProducts);
-
-// / => GET
-router.get('/product-list', shopController.getAllProducts);
 
 // / => GET STARTPAGE
 router.get('/', shopController.getStartPage);
+
+// / => GET
+router.get('/products', shopController.getAllProducts);
+
+// / => GET PRODUCT
+router.get('/products/:productId', shopController.getProduct);
+
+// / => GET ORDERS
+router.get('/orders', shopController.getOrders);
 
 // / => GET CART
 router.get('/cart', shopController.getCart);
 
 // / => GET CHECKOUT PAGE
-router.get('/checkout');
+router.get('/checkout', shopController.getCheckout);
 
 module.exports = router; 

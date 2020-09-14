@@ -4,11 +4,21 @@ div.product-grid {
     width: 100%;
     flex-wrap: wrap;
 }
+
 div.product-item {
     padding: 0rem;
     width: 25%;
     margin: -1px;
     text-align: center;
+}
+@media screen and (max-width: 991px) {
+    div.product-item {
+        padding: 0rem;
+        width: 50%;
+        margin: -1px;
+        text-align: center;
+    }
+
 }
 div.product-item h4 {
     margin-top: 1rem;
@@ -24,6 +34,16 @@ div.product-item p {
 }
 div.product-item img {
     max-width: 100%;
+}
+
+/* PRODUCT DETAIL */
+.product-detail .product-detail-image img {
+    max-width: 100%;
+}
+.product-detail-description .product-price {
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 50%;
 }
 
 /* ADMIN */
@@ -62,13 +82,25 @@ ul.product-grid .product-item div {
     color: gray;
     font-weight: bold;
 }
-ul.product-grid .product-item div a {
+ul.product-grid .product-item div button {
     text-align: right;
     text-decoration: none;
     color: gray;
     font-weight: bold;
+    cursor: pointer;
 }
-ul.product-grid .product-item div a.delete-product {
+ul.product-grid .product-item div button.delete-product {
+    background: unset;
+    border: unset;
+    padding: unset;
+    height: unset;
     color: darkred;
     margin-left: 1rem;
+}
+ul.product-grid .product-item div button.edit-product {
+    background: unset;
+    border: unset;
+    padding: unset;
+    height: unset;
+    color: gray;
 }
