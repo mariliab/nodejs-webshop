@@ -15,24 +15,27 @@
             </div>
         </div>
         <% if (products.length > 0) { %>
-            <div class="product-grid-wrapper">
-                <ul class="product-grid">
+                <table class="product-grid">
+                    <tr>
+                      <th>Title</th>
+                      <th>Price</th>
+                      <th>Actions</th>
+                    </tr>
                     <% for (let product of products) { %>
-                        <li class="product-item">
-                            <h4><%= product.title %></h4>
-                            <p><%= product.price %> kr</p>
-                            <div>
+                        <tr class="product-item">
+                            <td><p class="product-title"><%= product.title %></p></td>
+                            <td><p><%= product.price %> kr</p></td>
+                            <td>                           <div>
                                 <form action="admin/edit-product" method="POST">
                                     <button class="btn-link edit-product" type="submit">Edit</button>
                                 </form>
                                 <form action="admin/delete-product" method="POST">
                                     <button class="btn-link delete-product" type="submit">Delete</button>
                                 </form>
-                            </div>
-                        </li>
+                            </div></td>
+                            </tr>
                     <% } %>
-                </ul>
-            </div>
+                  </table>
         <% } else { %>
             <p>No products yet..</p>
         <% } %>
