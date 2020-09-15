@@ -28,7 +28,10 @@
                             <td>
                                 <div>
                                     <a class="btn-link edit-product" href="/admin/edit-product/<%= product.id %>">Edit</a>
-                                    <a class="btn-link delete-product" href="/admin/delete-product/<%= product.id %>">Delete</a>
+                                    <form action="/admin/delete-product" method="POST">
+                                        <input type="hidden" name="productId" value="<%= product.id %>">
+                                        <button class="delete-product" type="submit">Delete</button>
+                                    </form>
                                 </div>
                             </td>
                             </tr>

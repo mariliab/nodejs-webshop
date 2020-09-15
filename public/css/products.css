@@ -131,6 +131,10 @@ table.product-grid .product-item p {
 table.product-grid .product-item td {
     padding: 1rem;
 }
+table.product-grid .product-item td:last-child div {
+    display: flex;
+    justify-content: flex-end;
+}
 table.product-grid .product-item div {
     text-align: right;
     text-decoration: none;
@@ -144,13 +148,15 @@ table.product-grid .product-item div a {
     font-weight: bold;
     cursor: pointer;
 }
-table.product-grid .product-item div a.delete-product {
+table.product-grid .product-item div button.delete-product {
     background: unset;
     border: unset;
     padding: unset;
     height: unset;
     color: darkred;
     margin-left: 1rem;
+    font-size: 100%;
+    cursor: pointer;
 }
 table.product-grid .product-item div a.edit-product {
     background: unset;

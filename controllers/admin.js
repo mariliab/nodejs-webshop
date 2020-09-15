@@ -19,17 +19,31 @@ exports.getEditProduct = (req, res, next) => {
 };
 
 exports.updateProduct = (req, res, next) => {
+    const productId = req.body.productId;
+    const title = req.body.title;
+    const image = req.body.image;
+    const price = req.body.price;
+    const description = req.body.description;
 
-    const updatedProduct = {
-        id: req.body.productId,
-        title: req.body.title,
-        image: req.body.image,
-        price: req.body.price,
-        description: req.body.description,
-    };
+    const updatedProductObject = {
+        id: productId,
+        title: title,
+        image: image,
+        price: price,
+        description: description
+    }
 
-    Product.updateProduct(updatedProduct);
+    const updatedProduct = new Product(updatedProductObject);
+    updatedProduct.save();
 
+    res.redirect('/admin/products');
+};
+
+exports.deleteProduct = (req, res, next) => {
+    const productId = req.body.productId;
+    console.log("DELETE PRODUCT controller : " + productId);
+    Product.deleteProduct(productId);
+    console.log("Product was deleted!");
     res.redirect('/admin/products');
 };
 
@@ -44,12 +58,13 @@ exports.getAllProducts = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
+    const id = null;
     const title = req.body.title;
     const image = req.body.image;
     const price = req.body.price;
     const description = req.body.description;
     if (req.body.title) {
-        const product = new Product({title, image, price, description
+        const product = new Product({id, title, image, price, description
         });
         product.save(product);
         res.redirect('/admin/products');

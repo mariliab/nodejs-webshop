@@ -19,6 +19,7 @@ const getProductsFromFile = callback => {
 
 module.exports = class Product {
     constructor(product){
+        this.id = product.id;
         this.title = product.title,
         this.image = product.image,
         this.price = product.price,
@@ -27,12 +28,24 @@ module.exports = class Product {
     }
 
     save() {
-        this.id = Math.random().toString();
         getProductsFromFile(products => {
-            products.push(this);
-            fs.writeFile(filePath, JSON.stringify(products), (err) => {
-                console.log(err);
-            });
+            if (this.id) {
+                const existingProductIndex = products.findIndex(prod => prod.id === this.id);
+
+                const updatedProducts = [...products];
+
+                updatedProducts[existingProductIndex] = this;
+                fs.writeFile(filePath, JSON.stringify(updatedProducts), (err) => {
+                    console.log(err);
+                });
+            } else {
+                this.id = Math.random().toString();
+                products.push(this);
+                fs.writeFile(filePath, JSON.stringify(products), err => {
+                    console.log(err);
+                });
+            }
+
         });
     };
 
@@ -47,16 +60,11 @@ module.exports = class Product {
         });
     };
 
-    static updateProduct(updatedProduct) {
+    static deleteProduct(id) {
         getProductsFromFile(products => {
-            const existingProductIndex = products.findIndex(prod => prod.id === updatedProduct.id);
-            const existingProduct = products[existingProductIndex];
+            const updatedProducts = products.filter(prod => prod.id != id);
 
-            if (existingProduct) {
-                products[existingProductIndex] = updatedProduct;
-            }
-
-            fs.writeFile(filePath, JSON.stringify(products), (err) => {
+            fs.writeFile(filePath, JSON.stringify(updatedProducts), err => {
                 console.log(err);
             });
         });
