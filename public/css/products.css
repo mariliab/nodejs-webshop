@@ -89,65 +89,6 @@ div.product-item img {
 }
 
 /* ADMIN */
-ul.product-grid {
-    display: initial;
-    list-style: none;
-}
-
-ul.product-grid .product-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: initial;
-    text-align: initial;
-    background: white;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-ul.product-grid .product-item:hover {
-    background: rgb(240,240,240);
-}
-ul.product-grid .product-item:not(:last-child) {
-    border-bottom: 1px solid;
-}
-
-ul.product-grid .product-item h4 {
-    width: 33%;
-}
-ul.product-grid .product-item p {
-    width: 33%;
-}
-ul.product-grid .product-item div {
-    width: 33%;
-    text-align: right;
-    text-decoration: none;
-    color: gray;
-    font-weight: bold;
-}
-ul.product-grid .product-item div button {
-    text-align: right;
-    text-decoration: none;
-    color: gray;
-    font-weight: bold;
-    cursor: pointer;
-}
-ul.product-grid .product-item div button.delete-product {
-    background: unset;
-    border: unset;
-    padding: unset;
-    height: unset;
-    color: darkred;
-    margin-left: 1rem;
-}
-ul.product-grid .product-item div button.edit-product {
-    background: unset;
-    border: unset;
-    padding: unset;
-    height: unset;
-    color: gray;
-}
-
-
 table.product-grid {
     width: 100%;
 }
@@ -188,7 +129,7 @@ table.product-grid .product-item p {
     margin: 0;
 }
 table.product-grid .product-item td {
-    padding: 0.5rem 1rem;
+    padding: 1rem;
 }
 table.product-grid .product-item div {
     text-align: right;
@@ -196,14 +137,14 @@ table.product-grid .product-item div {
     color: gray;
     font-weight: bold;
 }
-table.product-grid .product-item div button {
+table.product-grid .product-item div a {
     text-align: right;
     text-decoration: none;
     color: gray;
     font-weight: bold;
     cursor: pointer;
 }
-table.product-grid .product-item div button.delete-product {
+table.product-grid .product-item div a.delete-product {
     background: unset;
     border: unset;
     padding: unset;
@@ -211,7 +152,7 @@ table.product-grid .product-item div button.delete-product {
     color: darkred;
     margin-left: 1rem;
 }
-table.product-grid .product-item div button.edit-product {
+table.product-grid .product-item div a.edit-product {
     background: unset;
     border: unset;
     padding: unset;

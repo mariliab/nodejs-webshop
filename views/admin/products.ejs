@@ -25,14 +25,12 @@
                         <tr class="product-item">
                             <td><p class="product-title"><%= product.title %></p></td>
                             <td><p><%= product.price %> kr</p></td>
-                            <td>                           <div>
-                                <form action="admin/edit-product" method="POST">
-                                    <button class="btn-link edit-product" type="submit">Edit</button>
-                                </form>
-                                <form action="admin/delete-product" method="POST">
-                                    <button class="btn-link delete-product" type="submit">Delete</button>
-                                </form>
-                            </div></td>
+                            <td>
+                                <div>
+                                    <a class="btn-link edit-product" href="/admin/edit-product/<%= product.id %>">Edit</a>
+                                    <a class="btn-link delete-product" href="/admin/delete-product/<%= product.id %>">Delete</a>
+                                </div>
+                            </td>
                             </tr>
                     <% } %>
                   </table>

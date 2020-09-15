@@ -8,12 +8,29 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.getEditProduct = (req, res, next) => {
-    const product = req.body.title;
-    console.log("Edit product: " + JSON.stringify(product));
-    res.render('admin/edit-product', {
-      pageTitle: "Edit product", 
-      path: '/admin/edit-product',
+    const productId = req.params.productId;
+    Product.fetchProduct(productId, productItem => {
+        res.render('admin/edit-product', {
+            pageTitle: "Edit product", 
+            path: '/admin/edit-product',
+            product: productItem
+        });
     });
+};
+
+exports.updateProduct = (req, res, next) => {
+
+    const updatedProduct = {
+        id: req.body.productId,
+        title: req.body.title,
+        image: req.body.image,
+        price: req.body.price,
+        description: req.body.description,
+    };
+
+    Product.updateProduct(updatedProduct);
+
+    res.redirect('/admin/products');
 };
 
 exports.getAllProducts = (req, res, next) => {
