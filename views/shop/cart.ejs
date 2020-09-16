@@ -9,10 +9,10 @@
         <div class="page-header">
             <h1>Cart</h1>
         </div>
-        <div class="row">
-            <div class="lg-col-8 xs-col-12">
-                <% if (products.length > 0) { %>
-                    <table class="product-grid">
+        <div class="row">     
+            <% if (products.length > 0) { %>
+                <div class="lg-col-8 xs-col-12">
+                    <table class="cart">
                         <thead>
                             <tr>
                                 <th>Product</th>
@@ -25,49 +25,59 @@
                                 <tr class="product-item">
                                     <td><p class="product-title"><%= p.productData.title %></p></td>
                                     <td><p><%= p.productData.price %> kr</p></td>
-                                    <td><p><%= p.quantity %></p></td>
+                                    <td class="quantity">
+                                        <div>
+                                            <p><%= p.quantity %></p>
+                                            <form action="/shop/delete-from-cart" method="POST">
+                                                <input type="hidden" name="productId" value="<%= p.productData.id %>">
+                                                <button class="icon-button" type="submit">
+                                                    <img height="16" alt="Delete" width="16" src="/zondicons/trash.svg" />
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             <% }); %>
                         </tbody>
                       </table>
-            <% } else { %>
-                <p>Cart is empty</p>
-            <% } %>
-            </div>
-            <div class="lg-col-4 xs-col-12">
-                <table class="cart-overview">
-                    <thead>
-                        <tr>
-                            <th>
-                                Cart overview
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div>
-                                    <div class="total-price">
-                                        Total price 
-                                    </div>
+                </div>
+                <div class="lg-col-4 xs-col-12">
+                    <table class="cart-overview">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Cart overview
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
                                     <div>
-                                        <%= totalPrice %> kr
+                                        <div class="total-price">
+                                            Total price 
+                                        </div>
+                                        <div>
+                                            <%= totalPrice %> kr
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="go-to-checkout">
-                                <div class="link-button-wrapper">
-                                    <a class="primary-cta" href="/shop/checkout">Go to checkout</a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="go-to-checkout">
+                                    <div class="link-button-wrapper">
+                                        <a class="primary-cta" href="/shop/checkout">Go to checkout</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            <% } else { %>
+                <div class="lg-col-6">
+                    <p>Cart is empty</p>
+                </div>
+            <% } %>
         </div>
-
-
     </main>
 <%- include('../includes/end.ejs') %>

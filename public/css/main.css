@@ -65,6 +65,12 @@ h1 {
 .link-wrapper a:hover {
     background: black;
 }
+button {
+    cursor: pointer;
+}
+button:focus {
+    outline: none;
+}
 button.primary {    
     height: 50px;
     font-size: 100%;
@@ -73,12 +79,15 @@ button.primary {
     padding: 0rem 3rem;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
 }
 button.primary:hover {
     background: white;
     border: 2px solid black;
     color: black;
+}
+button.icon-button {
+    background: unset;
+    border: none;
 }
 
 .page-header {

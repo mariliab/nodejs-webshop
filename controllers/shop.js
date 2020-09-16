@@ -50,6 +50,18 @@ exports.addToCart = (req, res, next) => {
     res.redirect('/cart');
 };
 
+exports.deleteFromCart = (req, res, next) => {
+    const productId = req.body.productId;
+    Cart.getCart(cart => {
+        const productToDelete = cart.products.find(product => product.id === productId);
+        Product.fetchProduct(productId, product => {
+            const productPrice = product.price;
+            Cart.deleteProduct(productId, productPrice);
+            res.redirect('/cart');
+        });
+    });
+};
+
 exports.getOrders = (req, res, next) => {
     res.render('shop/orders', {
       pageTitle: "Orders", 

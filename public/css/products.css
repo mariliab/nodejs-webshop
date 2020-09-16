@@ -97,13 +97,13 @@ table thead tr th {
     padding: 1rem;
     border-bottom: 1px solid;
 }
-table tr th:last-child {
+table.admin-products tr th:last-child {
     text-align: right;
 }
-table tr th:not(:last-child) {
+table tr th {
     text-align: left;
 }
-table tr th:last-child {
+table.admin-products tr th:last-child {
     text-align: right;
 }
 
@@ -133,16 +133,11 @@ table tbody tr p {
 table tbody tr td {
     padding: 1rem;
 }
-table tbody tr td:last-child div {
+table.admin-products tbody tr td:last-child div {
     display: flex;
     justify-content: flex-end;
 }
-table tbody tr div {
-    text-align: right;
-    text-decoration: none;
-    color: gray;
-    font-weight: bold;
-}
+
 table tbody tr div a {
     text-align: right;
     text-decoration: none;
@@ -174,6 +169,11 @@ table.cart-overview tbody tr td:last-child div {
     display: flex;
     justify-content: space-between;
 }
+table.cart-overview tbody tr td.quantity > div {
+    background: red;
+    display: flex;
+    justify-content: space-between;
+}
 table.cart-overview tr th {
     text-align: initial;
 }
@@ -183,6 +183,12 @@ table.cart-overview tr td div.total-price {
 table.cart-overview tbody tr td.go-to-checkout > div {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     padding: 0;
+}
+table.cart tbody tr td:last-child div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
