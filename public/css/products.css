@@ -89,23 +89,25 @@ div.product-item img {
 }
 
 /* ADMIN */
-table.product-grid {
+table {
     width: 100%;
 }
-table.product-grid tr th {
-    padding: 1rem 0;
+table thead tr th {
+    background: white;
+    padding: 1rem;
+    border-bottom: 1px solid;
 }
-table.product-grid tr th:last-child {
+table tr th:last-child {
     text-align: right;
 }
-table.product-grid tr th:not(:last-child) {
+table tr th:not(:last-child) {
     text-align: left;
 }
-table.product-grid tr th:last-child {
+table tr th:last-child {
     text-align: right;
 }
 
-table.product-grid .product-item {
+table tbody tr {
     align-items: center;
     justify-content: space-between;
     width: initial;
@@ -114,41 +116,41 @@ table.product-grid .product-item {
     padding-left: 1rem;
     padding-right: 1rem;
 }
-table.product-grid .product-item .product-title {
+table tbody tr .product-title {
     font-family: "Exo 2";
     font-weight: 400;
 }
-table.product-grid .product-item:hover {
-    background: rgb(240,240,240);
+table tbody tr:hover {
+    background: rgb(245,245,245);
 }
-table.product-grid .product-item:not(:last-child) {
+table tbody tr:not(:last-child) {
     border-bottom: 1px solid;
 }
 
-table.product-grid .product-item p {
+table tbody tr p {
     margin: 0;
 }
-table.product-grid .product-item td {
+table tbody tr td {
     padding: 1rem;
 }
-table.product-grid .product-item td:last-child div {
+table tbody tr td:last-child div {
     display: flex;
     justify-content: flex-end;
 }
-table.product-grid .product-item div {
+table tbody tr div {
     text-align: right;
     text-decoration: none;
     color: gray;
     font-weight: bold;
 }
-table.product-grid .product-item div a {
+table tbody tr div a {
     text-align: right;
     text-decoration: none;
     color: gray;
     font-weight: bold;
     cursor: pointer;
 }
-table.product-grid .product-item div button.delete-product {
+table tbody tr div button.delete-product {
     background: unset;
     border: unset;
     padding: unset;
@@ -158,10 +160,29 @@ table.product-grid .product-item div button.delete-product {
     font-size: 100%;
     cursor: pointer;
 }
-table.product-grid .product-item div a.edit-product {
+table tbody tr div a.edit-product {
     background: unset;
     border: unset;
     padding: unset;
     height: unset;
     color: gray;
 }
+table.cart-overview tbody tr:hover {
+    background: white;
+}
+table.cart-overview tbody tr td:last-child div {
+    display: flex;
+    justify-content: space-between;
+}
+table.cart-overview tr th {
+    text-align: initial;
+}
+table.cart-overview tr td div.total-price {
+    font-family: "Exo 2";
+}
+table.cart-overview tbody tr td.go-to-checkout > div {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+}
+

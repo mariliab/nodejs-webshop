@@ -6,7 +6,9 @@
 <body>
     <%- include('../includes/navigation.ejs') %>
     <main>
-        <h1>Products</h1>
+        <div class="page-header">
+            <h1>Products</h1>
+        </div>
         <% if (products.length > 0) { %>
             <div class="product-grid">
                 <% for (let product of products) { %>

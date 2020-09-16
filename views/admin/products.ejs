@@ -16,11 +16,14 @@
         </div>
         <% if (products.length > 0) { %>
                 <table class="product-grid">
-                    <tr>
-                      <th>Title</th>
-                      <th>Price</th>
-                      <th>Actions</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
                     <% for (let product of products) { %>
                         <tr class="product-item">
                             <td><p class="product-title"><%= product.title %></p></td>
@@ -36,6 +39,7 @@
                             </td>
                             </tr>
                     <% } %>
+                    </tbody>
                   </table>
         <% } else { %>
             <p>No products yet..</p>

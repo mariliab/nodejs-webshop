@@ -8,9 +8,66 @@
     <main>
         <div class="page-header">
             <h1>Cart</h1>
-            <div class="link-button-wrapper">
-                <a class="primary-cta" href="/shop/checkout">Go to checkout</a>
+        </div>
+        <div class="row">
+            <div class="lg-col-8 xs-col-12">
+                <% if (products.length > 0) { %>
+                    <table class="product-grid">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% products.forEach(p => {  %>
+                                <tr class="product-item">
+                                    <td><p class="product-title"><%= p.productData.title %></p></td>
+                                    <td><p><%= p.productData.price %> kr</p></td>
+                                    <td><p><%= p.quantity %></p></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                      </table>
+            <% } else { %>
+                <p>Cart is empty</p>
+            <% } %>
+            </div>
+            <div class="lg-col-4 xs-col-12">
+                <table class="cart-overview">
+                    <thead>
+                        <tr>
+                            <th>
+                                Cart overview
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div>
+                                    <div class="total-price">
+                                        Total price 
+                                    </div>
+                                    <div>
+                                        <%= totalPrice %> kr
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="go-to-checkout">
+                                <div class="link-button-wrapper">
+                                    <a class="primary-cta" href="/shop/checkout">Go to checkout</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+
+
     </main>
 <%- include('../includes/end.ejs') %>

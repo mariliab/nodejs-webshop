@@ -41,9 +41,7 @@ exports.updateProduct = (req, res, next) => {
 
 exports.deleteProduct = (req, res, next) => {
     const productId = req.body.productId;
-    console.log("DELETE PRODUCT controller : " + productId);
     Product.deleteProduct(productId);
-    console.log("Product was deleted!");
     res.redirect('/admin/products');
 };
 
