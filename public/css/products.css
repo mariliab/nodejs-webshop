@@ -124,6 +124,18 @@ table tbody tr .product-title {
     font-family: "Exo 2";
     font-weight: 400;
 }
+table tbody tr td.product-description {
+    width: 25%;
+}
+
+table tbody tr td.product-description p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+     overflow: hidden;
+     white-space: break-spaces;
+}
+
 table tbody tr:hover {
     background: rgb(245,245,245);
 }

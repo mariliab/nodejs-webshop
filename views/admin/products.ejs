@@ -20,6 +20,7 @@
                         <tr>
                         <th>Title</th>
                         <th>Price</th>
+                        <th>Description</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -28,6 +29,7 @@
                         <tr class="product-item">
                             <td><p class="product-title"><%= product.title %></p></td>
                             <td><p><%= product.price %> kr</p></td>
+                            <td class="product-description"><p><%= product.description %></p></td>
                             <td>
                                 <div>
                                     <a class="btn-link edit-product" href="/admin/edit-product/<%= product.id %>">Edit</a>
