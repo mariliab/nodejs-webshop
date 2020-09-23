@@ -207,4 +207,7 @@ table.cart tbody tr td:last-child div {
     justify-content: space-between;
     align-items: center;
 }
-
+/* ORDERS */
+table.orders {
+    margin-bottom: 3rem;
+}

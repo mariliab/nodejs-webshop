@@ -4,8 +4,9 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, button {
+h1, h2, h3, h4, h5, h6, button, a.primary-cta {
     font-family: 'Exo 2', sans-serif;
+    font-weight: normal;
 }
 textarea, input {
     font-family: 'Open Sans', sans-serif; 
@@ -32,7 +33,6 @@ h1 {
     color: black;
     padding: 0.5rem 2rem;
     text-decoration: none;
-    font-weight: bold;
     border-radius: 5px;
 }
 .link-button-wrapper a.primary-cta {
@@ -41,7 +41,6 @@ h1 {
     color:white;
     padding: 0.5rem 2rem;
     text-decoration: none;
-    font-weight: bold;
 }
 .link-button-wrapper a:hover {
     background: black;
