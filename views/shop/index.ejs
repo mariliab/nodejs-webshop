@@ -13,7 +13,7 @@
             <div class="product-grid">
                 <% for (let product of products) { %>
                     <div class="product-item">
-                        <a href="shop/products/<%= product.id %>">
+                        <a href="shop/products/<%= product._id %>">
                             <img src="<%= product.image %>" alt="<%= product.title %>"></img>
                             <h4><%= product.title %></h4>
                             <p><%= product.price %> kr</p>

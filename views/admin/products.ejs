@@ -28,13 +28,15 @@
                     <% for (let product of products) { %>
                         <tr class="product-item">
                             <td><p class="product-title"><%= product.title %></p></td>
-                            <td><p><%= product.price %> kr</p></td>
+                            <td><p><%= product.price %> kr</p>
+                                <p>ID: <%= product._id %></p>
+                            </td>
                             <td class="product-description"><p><%= product.description %></p></td>
                             <td>
                                 <div>
-                                    <a class="btn-link edit-product" href="/admin/edit-product/<%= product.id %>">Edit</a>
+                                    <a class="btn-link edit-product" href="/admin/edit-product/<%= product._id %>">Edit</a>
                                     <form action="/admin/delete-product" method="POST">
-                                        <input type="hidden" name="productId" value="<%= product.id %>">
+                                        <input type="hidden" name="productId" value="<%= product._id %>">
                                         <button class="delete-product" type="submit">Delete</button>
                                     </form>
                                 </div>
