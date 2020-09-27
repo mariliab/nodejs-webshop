@@ -27,9 +27,9 @@
                                     <td><p><%= p.price %> kr</p></td>
                                     <td class="quantity">
                                         <div>
-                                            <p><%= p.cartItem.quantity %></p>
+                                            <p><%= p.quantity %></p>
                                             <form action="/shop/delete-from-cart" method="POST">
-                                                <input type="hidden" name="productId" value="<%= p.id %>">
+                                                <input type="hidden" name="productId" value="<%= p._id %>">
                                                 <button class="icon-button" type="submit">
                                                     <img height="16" alt="Delete" width="16" src="/zondicons/trash.svg" />
                                                 </button>

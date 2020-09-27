@@ -30,17 +30,22 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-    res.render('shop/cart', {
-        pageTitle: "Your cart", 
-        path: '/cart',
-      });
-};
+    req.user
+      .getCart()
+      .then(products => {
+        res.render('shop/cart', {
+          path: '/cart',
+          pageTitle: 'Your Cart',
+          products: products
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
 exports.postToCart = (req, res, next) => {
     const productId = req.body.productId;
     Product.fetchProduct(productId)
     .then( product => {
-        //console.log("YES vi fick tillbaka en product: " + JSON.stringify(product));
         return req.user.addToCart(product);
     })
     .then( result => {
@@ -51,24 +56,15 @@ exports.postToCart = (req, res, next) => {
     })
 };
 
-// exports.deleteFromCart = (req, res, next) => {
-//     const productId = req.body.productId;
-
-//     req.user.getCart()
-//     .then( cart => {
-//         return cart.getProducts({ where: {id: productId}});
-//     })
-//     .then( products => {
-//         const product = products[0];
-//         return product.cartItem.destroy();
-//     })
-//     .then( result => {
-//         res.redirect('/cart');
-//     })
-//     .catch( err => {
-//         console.log(err);
-//     })
-// };
+exports.deleteFromCart = (req, res, next) => {
+    const productId = req.body.productId;
+    req.user
+      .deleteProductFromCart(productId)
+      .then(result => {
+        res.redirect('/cart');
+      })
+      .catch(err => console.log(err));
+  };
 
 // exports.getOrders = (req, res, next) => {
 //     req.user.getOrders({include: ['products']})

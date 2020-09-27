@@ -27,7 +27,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
     User.findUser("5f70bb312f7bbea19cf0ae61")
       .then(user => {
-        console.log("USER with id#5f70bb312f7bbea19cf0ae61 was found!" + JSON.stringify(user));
         req.user = new User(user.name, user.email, user.cart, user._id);
         next();
       })

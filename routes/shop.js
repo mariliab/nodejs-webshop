@@ -24,7 +24,7 @@ router.get('/cart', shopController.getCart);
 router.post('/add-to-cart', shopController.postToCart);
 
 // // / => POST ADD TO CART
-// router.post('/delete-from-cart', shopController.deleteFromCart);
+router.post('/delete-from-cart', shopController.deleteFromCart);
 
 // // / => POST CHECKOUT PAGE
 // router.post('/checkout', shopController.createOrder);
