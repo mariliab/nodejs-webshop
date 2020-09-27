@@ -24,16 +24,14 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //user
-app.use((req,res,next) => {
-    User.findUser("5f6da34254d2f0ec289037e9")
-    .then( user => {
-        req.user = user;
-        console.log("User is: " + req.user);
+app.use((req, res, next) => {
+    User.findUser("5f70bb312f7bbea19cf0ae61")
+      .then(user => {
+        console.log("USER with id#5f70bb312f7bbea19cf0ae61 was found!" + JSON.stringify(user));
+        req.user = new User(user.name, user.email, user.cart, user._id);
         next();
-    })
-    .catch( err => {
-        console.log(err);
-    });
+      })
+      .catch(err => console.log(err));
 });
 
 //routes
