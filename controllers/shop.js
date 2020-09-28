@@ -66,55 +66,31 @@ exports.deleteFromCart = (req, res, next) => {
       .catch(err => console.log(err));
   };
 
-// exports.getOrders = (req, res, next) => {
-//     req.user.getOrders({include: ['products']})
-//     .then( orders => {
-//         console.log("ORDERS -> " + orders)
-//         res.render('shop/orders', {
-//             pageTitle: "Orders", 
-//             path: '/orders',
-//             orders: orders
-//         });
-//     })
-//     .catch( err => {
-//         console.log(err)
-//     })
-// };
+exports.getOrders = (req, res, next) => {
+    req.user
+    .getOrders()
+    .then( orders => {
+        res.render('shop/orders', {
+            pageTitle: "Orders", 
+            path: '/orders',
+            orders: orders
+        });
+    })
+    .catch( err => {
+        console.log(err);
+    })
+};
 
 
-// exports.createOrder = (req, res, next) => {
-//     let fetchedCart;
-//     req.user.getCart()
-//     .then( cart => {
-//         fetchedCart = cart;
-//         console.log(cart);
-//         return cart.getProducts();
-//     })
-//     .then( products => {
-//         return req.user.createOrder()
-//         .then( order => {
-//             return order.addProduct(products.map( product => {
-//                 product.orderItem = { quantity: product.cartItem.quantity}
-//                 return product;
-//             }));
-//         })
-//         .catch(err => {
-//             console.log(err);
-//         })
-//     })
-//     .then( result => {
-//         return fetchedCart.setProducts(null);
-//     })
-//     .then( result => {
-//         res.render('shop/checkout', {
-//             pageTitle: "Checkout", 
-//             path: '/checkout',
-//         });
-//     })
-//     .catch(err => {
-//         console.log(err);
-//     })
-// };
+exports.createOrder = (req, res, next) => {
+    req.user.addOrder()
+    .then( result => {
+        res.redirect('shop/orders');
+    })
+    .catch(err => {
+        console.log(err);
+    })
+};
 
 exports.getStartPage = (req, res, next) => {
     Product.fetchAllProducts().then( products => {

@@ -15,7 +15,7 @@ router.get('/products', shopController.getAllProducts);
 router.get('/products/:productId', shopController.getProduct);
 
 // // / => GET ORDERS
-// router.get('/orders', shopController.getOrders);
+router.get('/orders', shopController.getOrders);
 
 // // / => GET CART
 router.get('/cart', shopController.getCart);
@@ -27,6 +27,6 @@ router.post('/add-to-cart', shopController.postToCart);
 router.post('/delete-from-cart', shopController.deleteFromCart);
 
 // // / => POST CHECKOUT PAGE
-// router.post('/checkout', shopController.createOrder);
+router.post('/checkout', shopController.createOrder);
 
 module.exports = router; 
