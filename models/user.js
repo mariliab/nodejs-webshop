@@ -26,7 +26,7 @@ class User {
 
         console.log("this.cart: " + JSON.stringify(this.cart.items));
         const cartProductIndex = this.cart.items.findIndex(cartProduct => {
-          return cartProduct._id.toString() === product._id.toString();
+          return cartProduct.productId.toString() === product._id.toString();
         });
         let newQuantity = 1;
         const updatedCartItems = [...this.cart.items];
@@ -36,7 +36,7 @@ class User {
           updatedCartItems[cartProductIndex].quantity = newQuantity;
         } else {
           updatedCartItems.push({
-            _id: new ObjectId(product._id),
+            productId: new ObjectId(product._id),
             quantity: newQuantity
           });
         }
@@ -53,7 +53,7 @@ class User {
     getCart() {
         const db = getDb();
         const productIds = this.cart.items.map(i => {
-          return i._id;
+          return i.productId;
         });
         return db
           .collection('products')
@@ -64,7 +64,7 @@ class User {
               return {
                 ...p,
                 quantity: this.cart.items.find(i => {
-                  return i._id.toString() === p._id.toString();
+                  return i.productId.toString() === p._id.toString();
                 }).quantity
               };
             });
@@ -73,7 +73,7 @@ class User {
 
     deleteProductFromCart(productId) {
         const updatedCartItems = this.cart.items.filter(item => {
-          return item._id.toString() !== productId.toString();
+          return item.productId.toString() !== productId.toString();
         });
         const db = getDb();
         return db
