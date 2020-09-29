@@ -17,6 +17,7 @@ const shopRoutes = require('./routes/shop');
 const errorController = require('./controllers/error');
 
 //database
+const mongoose = require('mongoose');
 const mongoConnect = require('./util/database');
 const User = require('./models/user');
 
