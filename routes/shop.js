@@ -5,13 +5,13 @@ const router = express.Router();
 //controllers
 const shopController = require('../controllers/shop');
 
-// / => GET STARTPAGE
+// // / => GET STARTPAGE
 router.get('/', shopController.getStartPage);
 
-// // / => GET
+// / => GET
 router.get('/products', shopController.getAllProducts);
 
-// // / => GET PRODUCT
+// / => GET PRODUCT
 router.get('/products/:productId', shopController.getProduct);
 
 // // / => GET ORDERS
@@ -23,7 +23,7 @@ router.get('/cart', shopController.getCart);
 // // / => POST ADD TO CART
 router.post('/add-to-cart', shopController.postToCart);
 
-// // / => POST ADD TO CART
+// // / => POST DELETE FROM CART
 router.post('/delete-from-cart', shopController.deleteFromCart);
 
 // // / => POST CHECKOUT PAGE

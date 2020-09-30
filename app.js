@@ -18,7 +18,6 @@ const errorController = require('./controllers/error');
 
 //database
 const mongoose = require('mongoose');
-const mongoConnect = require('./util/database');
 const User = require('./models/user');
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -26,9 +25,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //user
 app.use((req, res, next) => {
-    User.findUser("5f718cb32f7bbea19cf0ae62")
+    User.findById("5f743614cd36e875a2f78d43")
       .then(user => {
-        req.user = new User(user.name, user.email, user.cart, user._id);
+        req.user = user;
         next();
       })
       .catch(err => console.log(err));
@@ -40,6 +39,18 @@ app.use('/shop', shopRoutes);
 app.use('/', shopRoutes);
 app.use(errorController.get404Page);
 
-mongoConnect.mongoConnect(() => {
-    app.listen(port);
+mongoose.connect('mongodb+srv://MaryLee:' + process.env.MONGODB_DATABASE_PASSWORD + '@nodejscompleteguide.9f4ka.mongodb.net/NodeJScompleteguide?retryWrites=true&w=majority')
+.then( result => {
+  // const user = new User({
+  //   name: "Marilia",
+  //   email: "marilia@morpheus.se",
+  //   cart: {
+  //     items: []
+  //   }
+  // });
+  //user.save()
+  app.listen(port);
+})
+.catch( err => {
+  console.log(err);
 });

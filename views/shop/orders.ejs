@@ -11,7 +11,7 @@
         </div>
         <% if (orders.length > 0) { %>
                     <% orders.forEach( order => { %>
-                        <h2>Order <%= order._id %> <%= order.createdAt %></h2>
+                        <h2>Order <%= order._id %></h2>
                         <table class="orders">
                             <thead>
                                 <tr>
@@ -27,20 +27,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% order.items.forEach( product => { %>
+                                <% order.products.forEach( p => { %>
                                     <tr>
                                     <td>
-                                    <p><%= product.title %></p>
+                                    <p><%= p.product.title %></p>
                                     </td>
                                     <td>
-                                        <p><%= product.quantity %></p>
+                                        <p><%= p.quantity %></p>
                                     </td>
                                     <td>
-                                        <p><%= product.price %></p>
+                                        <p><%= p.product.price %></p>
                                     </td>
                                     </tr>
                                 <% }); %>
                             </tbody>
+                            <tfoot>
+                                <tr><td>
+                                    Total price: <%= order.totalPrice %> kr
+                                </td></tr>
+                            </tfoot>
                         </table>
                     <% }); %>
         <% } else { %>
