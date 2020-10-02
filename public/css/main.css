@@ -8,6 +8,9 @@ h1, h2, h3, h4, h5, h6, button, a.primary-cta {
     font-family: 'Exo 2', sans-serif;
     font-weight: normal;
 }
+.text-center {
+    text-align: center;
+}
 textarea, input {
     font-family: 'Open Sans', sans-serif; 
 }

@@ -6,16 +6,20 @@
     flex-direction: column;*/
     box-shadow: 0 20px 25px 0px rgba(0,0,0,0.05);
 }
+
 @media screen and (max-width: 991px) {
     form {
         max-width: 100%;
         padding: 3em 2rem;
     }
-
 }
 @media screen and (min-width: 992px) {
     form {
         padding: 3rem;
+    }
+    form#login {
+        max-width: 33%;
+        margin: 0 auto;
     }
 
 }

@@ -12,6 +12,7 @@ app.set('views', 'views');
 //routes
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const authRoutes = require('./routes/auth');
 
 //controllers
 const errorController = require('./controllers/error');
@@ -33,13 +34,24 @@ app.use((req, res, next) => {
       .catch(err => console.log(err));
 });
 
+app.use((req, res, next) => {
+  const cookies = req.get('Cookie');
+  const isLoggedIn = cookies.includes('loggedIn=true');
+  req.isLoggedIn = isLoggedIn;
+  next();
+})
+
 //routes
 app.use('/admin', adminRoutes);
 app.use('/shop', shopRoutes);
+app.use('/auth', authRoutes);
 app.use('/', shopRoutes);
 app.use(errorController.get404Page);
 
-mongoose.connect('mongodb+srv://MaryLee:' + process.env.MONGODB_DATABASE_PASSWORD + '@nodejscompleteguide.9f4ka.mongodb.net/NodeJScompleteguide?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://MaryLee:' + process.env.MONGODB_DATABASE_PASSWORD + '@nodejscompleteguide.9f4ka.mongodb.net/NodeJScompleteguide?retryWrites=true&w=majority', { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true 
+})
 .then( result => {
   // const user = new User({
   //   name: "Marilia",
