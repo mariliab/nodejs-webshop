@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 const path = require('path');
 const express = require('express');
@@ -10,25 +9,28 @@ const port = 3000;
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-//routes
+// routes
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
 
-//controllers
+// controllers
 const errorController = require('./controllers/error');
 
-//database
+// database
 const mongoose = require('mongoose');
 const User = require('./models/user');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(
-  session({ secret: 'my secret', resave: false, saveUninitialized: false })
-);
+app.use(session({ 
+    secret: 'my secret', 
+    resave: false, 
+    saveUninitialized: false,
+    cookie: {}
+}));
 
-//user
+// user
 app.use((req, res, next) => {
     User.findById("5f743614cd36e875a2f78d43")
       .then(user => {
@@ -38,14 +40,18 @@ app.use((req, res, next) => {
       .catch(err => console.log(err));
 });
 
-app.use((req, res, next) => {
-  const cookies = req.get('Cookie');
-  const isLoggedIn = cookies.includes('loggedIn=true');
-  req.isLoggedIn = isLoggedIn;
-  next();
-})
+// set cookie for every page
+// app.use((req, res, next) => {
+//   const cookies = req.get('Cookie');
+//   if (cookies.includes('loggedIn=true')) {
+//     req.isLoggedIn = cookies.includes('loggedIn=true')
+//   } else {
+//     req.isLoggedIn = false;
+//   }
+//   next();
+// })
 
-//routes
+// routes
 app.use('/admin', adminRoutes);
 app.use('/shop', shopRoutes);
 app.use('/auth', authRoutes);
@@ -57,15 +63,8 @@ mongoose.connect('mongodb+srv://MaryLee:' + process.env.MONGODB_DATABASE_PASSWOR
   useUnifiedTopology: true 
 })
 .then( result => {
-  // const user = new User({
-  //   name: "Marilia",
-  //   email: "marilia@morpheus.se",
-  //   cart: {
-  //     items: []
-  //   }
-  // });
-  //user.save()
   app.listen(port);
+  console.log("Server is started!");
 })
 .catch( err => {
   console.log(err);

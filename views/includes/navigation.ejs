@@ -18,9 +18,11 @@
                 <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>">Admin</a>
             </li>
             <% } %>
-            <li class="main-header-item">
-                <a href="/auth/login" class="<%= path === '/auth/login' ? 'active' : ''%>">Login</a>
-            </li>
+            <% if (!isAuthenticated) { %>
+                <li class="main-header-item">
+                    <a href="/auth/login" class="<%= path === '/auth/login' ? 'active' : ''%>">Login</a>
+                </li>
+                <% } %>
             <li class="main-header-item-icon">
                 <a href="/shop/cart" class="<%= path === '/cart' ? 'active' : ''%>"><img height="16" width="16" src="/zondicons/location-shopping.svg" /></a>
             </li>
@@ -29,7 +31,14 @@
 
     <div id="mobile-menu-toggle">
         <div id="mobile-menu-toggle-button"><img height="16" width="16" src="/zondicons/menu.svg" /></div>
-        <a href="/shop/cart" class="<%= path === '/cart' ? 'active' : ''%>"><img height="16" width="16" src="/zondicons/location-shopping.svg" /></a>
+        <div class="flex">
+            <% if (isAuthenticated) { %>
+                <li class="main-header-item">
+                    <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>">Admin</a>
+                </li>
+                <% } %>
+                <a href="/shop/cart" class="<%= path === '/cart' ? 'active' : ''%>"><img height="16" width="16" src="/zondicons/location-shopping.svg" /></a>
+        </div>
     </div>
     <nav class="mobile-main-header-nav">
         <ul class="mobile-main-header-item-list">

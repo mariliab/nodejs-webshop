@@ -11,6 +11,9 @@ h1, h2, h3, h4, h5, h6, button, a.primary-cta {
 .text-center {
     text-align: center;
 }
+.flex {
+    display: flex;
+}
 textarea, input {
     font-family: 'Open Sans', sans-serif; 
 }
