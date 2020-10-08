@@ -6,6 +6,7 @@
 <body>
     <%- include('../includes/navigation.ejs') %>
     <main>
+        <% if (isAuthenticated) { %>
         <div class="page-header">
             <div>
                 <h1>Products</h1>
@@ -49,6 +50,9 @@
                   </table>
         <% } else { %>
             <p>No products yet..</p>
+        <% } %>
+        <% } else { %>
+            <p>Du måste logga in för att se detta</p>
         <% } %>
     </main>
     <%- include('../includes/end.ejs') %>

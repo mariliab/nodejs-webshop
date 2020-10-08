@@ -2,8 +2,9 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
-const bodyParser = require('body-parser');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const app = express();
+const bodyParser = require('body-parser');
 const port = 3000;
 
 app.set('view engine', 'ejs');
@@ -20,6 +21,12 @@ const errorController = require('./controllers/error');
 // database
 const mongoose = require('mongoose');
 const User = require('./models/user');
+const MONGODB_URI = 'mongodb+srv://MaryLee:' + process.env.MONGODB_DATABASE_PASSWORD + '@nodejscompleteguide.9f4ka.mongodb.net/NodeJScompleteguide?retryWrites=true&w=majority';
+
+const store = new MongoDBStore({
+  uri: MONGODB_URI,
+  collection: 'sessions'
+});
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -27,7 +34,7 @@ app.use(session({
     secret: 'my secret', 
     resave: false, 
     saveUninitialized: false,
-    cookie: {}
+    store: store
 }));
 
 // user
@@ -58,7 +65,8 @@ app.use('/auth', authRoutes);
 app.use('/', shopRoutes);
 app.use(errorController.get404Page);
 
-mongoose.connect('mongodb+srv://MaryLee:' + process.env.MONGODB_DATABASE_PASSWORD + '@nodejscompleteguide.9f4ka.mongodb.net/NodeJScompleteguide?retryWrites=true&w=majority', { 
+mongoose.connect(
+  MONGODB_URI, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true 
 })

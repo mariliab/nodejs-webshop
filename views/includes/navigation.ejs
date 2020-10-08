@@ -37,6 +37,11 @@
                     <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>">Admin</a>
                 </li>
                 <% } %>
+                <% if (!isAuthenticated) { %>
+                    <li class="main-header-item">
+                        <a href="/auth/login" class="<%= path === '/auth/login' ? 'active' : ''%>">Login</a>
+                    </li>
+                <% } %>
                 <a href="/shop/cart" class="<%= path === '/cart' ? 'active' : ''%>"><img height="16" width="16" src="/zondicons/location-shopping.svg" /></a>
         </div>
     </div>
@@ -50,9 +55,6 @@
             </li>
             <li class="mobile-main-header-item">
                 <a href="/shop/orders" class="<%= path === '/shop/orders' ? 'active' : ''%>">Orders</a>
-            </li>
-            <li class="mobile-main-header-item">
-                <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>">Admin</a>
             </li>
         </ul>
     </nav>

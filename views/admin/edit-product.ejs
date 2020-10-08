@@ -6,6 +6,7 @@
 <body>
     <%- include('../includes/navigation.ejs') %>
     <main>
+        <% if (isAuthenticated) { %>
         <h1>Edit <%= product.title %></h1>
         <form id="add-product" class="form-white-bg" action="/admin/edit-product" method="POST">
             <div class="row">
@@ -29,5 +30,8 @@
                 </div>
             </div>
         </form>
+        <% } else { %>
+            <p>Du måste logga in för att se detta</p>
+        <% } %>
     </main>
     <%- include('../includes/end.ejs') %>
