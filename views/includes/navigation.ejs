@@ -8,9 +8,11 @@
             <li class="main-header-item">
                 <a href="/shop/products" class="<%= path === '/products' ? 'active' : ''%>">Products</a>
             </li>
-            <li class="main-header-item">
-                <a href="/shop/orders" class="<%= path === '/orders' ? 'active' : ''%>">Orders</a>
-            </li>
+            <% if (isAuthenticated) { %>
+                <li class="main-header-item">
+                    <a href="/shop/orders" class="<%= path === '/orders' ? 'active' : ''%>">Orders</a>
+                </li>
+            <% } %>
         </ul>
         <ul class="right-main-header-item-list">
             <% if (isAuthenticated) { %>
@@ -53,9 +55,11 @@
             <li class="mobile-main-header-item">
                 <a href="/shop/products" class="<%= path === '/shop/products' ? 'active' : ''%>">Products</a>
             </li>
-            <li class="mobile-main-header-item">
-                <a href="/shop/orders" class="<%= path === '/shop/orders' ? 'active' : ''%>">Orders</a>
-            </li>
+            <% if (isAuthenticated) { %>
+                <li class="mobile-main-header-item">
+                    <a href="/shop/orders" class="<%= path === '/shop/orders' ? 'active' : ''%>">Orders</a>
+                </li>
+            <% } %>
         </ul>
     </nav>
 </header>

@@ -37,27 +37,6 @@ app.use(session({
     store: store
 }));
 
-// user
-app.use((req, res, next) => {
-    User.findById("5f743614cd36e875a2f78d43")
-      .then(user => {
-        req.user = user;
-        next();
-      })
-      .catch(err => console.log(err));
-});
-
-// set cookie for every page
-// app.use((req, res, next) => {
-//   const cookies = req.get('Cookie');
-//   if (cookies.includes('loggedIn=true')) {
-//     req.isLoggedIn = cookies.includes('loggedIn=true')
-//   } else {
-//     req.isLoggedIn = false;
-//   }
-//   next();
-// })
-
 // routes
 app.use('/admin', adminRoutes);
 app.use('/shop', shopRoutes);
