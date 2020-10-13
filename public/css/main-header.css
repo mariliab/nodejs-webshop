@@ -22,7 +22,7 @@ header.main-header .main-header-item, .main-header-item-icon {
 }
 
 header.main-header .main-header-item :not(:first-child) {
-    padding-left: 0 !important;
+    padding-left: 0;
 }
 
 header.main-header .main-header-item a {
@@ -44,6 +44,31 @@ header.main-header .main-header-item a:hover {
     border-radius: 0.25rem;
 }
 
+.dropdown {
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+    cursor: pointer;
+}
+.dropdown .menu {
+    position: absolute;
+    background: white;
+    display: block;
+    list-style: none;
+}
+.dropdown .menu li {
+    padding: 1rem;
+}
+.dropdown .menu li button {
+    background: unset;
+    border: none
+}
+.dropdown.closed .menu {
+    height: 0px;
+    display: none;
+  }
+  .dropdown.closed .icon span {
+    transform: rotate(180deg);
+  }
 
 /* MOBILE */
 @media screen and (min-width: 992px) {

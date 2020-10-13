@@ -1,4 +1,5 @@
 <header class="main-header">
+    <!-- DESKTOP -->
     <div class="backdrop"></div>
     <nav class="main-header-nav">
         <ul class="main-header-item-list">
@@ -17,12 +18,25 @@
         <ul class="right-main-header-item-list">
             <% if (isAuthenticated) { %>
             <li class="main-header-item">
-                <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>">Admin</a>
+                <div class="dropdown closed">
+                    <img height="16" width="16" src="/zondicons/user.svg" />
+                    <ul class="menu">
+                      <li><a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>">Admin</a></li> 
+                      <li>
+                        <form id="logout" class="form-white-bg" action="/auth/logout" method="POST">
+                            <button type="submit">Log out<output></output></button>
+                        </form>
+                      </li> 
+                    </ul>
+                  </div>
             </li>
             <% } %>
             <% if (!isAuthenticated) { %>
                 <li class="main-header-item">
                     <a href="/auth/login" class="<%= path === '/auth/login' ? 'active' : ''%>">Login</a>
+                </li>
+                <li class="main-header-item">
+                    <a href="/auth/signup" class="<%= path === '/auth/signup' ? 'active' : ''%>">Sign up</a>
                 </li>
                 <% } %>
             <li class="main-header-item-icon">
@@ -31,17 +45,31 @@
         </ul>
     </nav>
 
+    <!-- MOBILE -->
     <div id="mobile-menu-toggle">
         <div id="mobile-menu-toggle-button"><img height="16" width="16" src="/zondicons/menu.svg" /></div>
         <div class="flex">
             <% if (isAuthenticated) { %>
                 <li class="main-header-item">
-                    <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>">Admin</a>
+                    <div class="dropdown closed">
+                        <img height="16" width="16" src="/zondicons/user.svg" />
+                        <ul class="menu">
+                          <li><a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>">Admin</a></li> 
+                          <li>
+                            <form id="logout" class="form-white-bg" action="/auth/logout" method="POST">
+                                <button type="submit">Log out<output></output></button>
+                            </form>
+                          </li> 
+                        </ul>
+                      </div>
                 </li>
                 <% } %>
                 <% if (!isAuthenticated) { %>
                     <li class="main-header-item">
                         <a href="/auth/login" class="<%= path === '/auth/login' ? 'active' : ''%>">Login</a>
+                    </li>
+                    <li class="main-header-item">
+                        <a href="/auth/signup" class="<%= path === '/auth/signup' ? 'active' : ''%>">Sign up</a>
                     </li>
                 <% } %>
                 <a href="/shop/cart" class="<%= path === '/cart' ? 'active' : ''%>"><img height="16" width="16" src="/zondicons/location-shopping.svg" /></a>

@@ -66,6 +66,9 @@ exports.getCart = (req, res, next) => {
 
 exports.postToCart = (req, res, next) => {
     const productId = req.body.productId;
+    if (!req.user) {
+        res.send('Login to add to cart!');
+    }
     Product.findById(productId)
     .then( product => {
         return req.user.addToCart(product);
@@ -91,7 +94,7 @@ exports.deleteFromCart = (req, res, next) => {
   };
 
 exports.getOrders = (req, res, next) => {
-    Order.find({'user.userId' : req.session.user._id})
+    Order.find({'user.userId' : req.user._id})
     .then( orders => {
         res.render('shop/orders', {
             pageTitle: "Orders", 
