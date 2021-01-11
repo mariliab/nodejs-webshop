@@ -1,70 +1,85 @@
-require('dotenv').config();
-const path = require('path');
-const express = require('express');
-const session = require('express-session');
-const MongoDBStore = require('connect-mongodb-session')(session);
+require("dotenv").config();
+const path = require("path");
+const express = require("express");
+const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
+const csrf = require("csurf");
 const app = express();
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const port = 3000;
+const csrfProtection = csrf();
 
-app.set('view engine', 'ejs');
-app.set('views', 'views');
+app.set("view engine", "ejs");
+app.set("views", "views");
 
 // routes
-const adminRoutes = require('./routes/admin');
-const shopRoutes = require('./routes/shop');
-const authRoutes = require('./routes/auth');
+const adminRoutes = require("./routes/admin");
+const shopRoutes = require("./routes/shop");
+const authRoutes = require("./routes/auth");
 
 // controllers
-const errorController = require('./controllers/error');
+const errorController = require("./controllers/error");
 
 // database
-const mongoose = require('mongoose');
-const User = require('./models/user');
-const MONGODB_URI = 'mongodb+srv://MaryLee:' + process.env.MONGODB_DATABASE_PASSWORD + '@nodejscompleteguide.9f4ka.mongodb.net/NodeJScompleteguide?retryWrites=true&w=majority';
+const mongoose = require("mongoose");
+const User = require("./models/user");
+const MONGODB_URI =
+  "mongodb+srv://MaryLee:" +
+  process.env.MONGODB_DATABASE_PASSWORD +
+  "@nodejscompleteguide.9f4ka.mongodb.net/NodeJScompleteguide?retryWrites=true&w=majority";
 
 const store = new MongoDBStore({
   uri: MONGODB_URI,
-  collection: 'sessions'
+  collection: "sessions",
 });
 
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ 
-    secret: 'my secret', 
-    resave: false, 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  session({
+    secret: "my secret",
+    resave: false,
     saveUninitialized: false,
-    store: store
-}));
+    store: store,
+  })
+);
+app.use(csrfProtection);
 
 app.use((req, res, next) => {
   if (!req.session.user) {
     return next();
   }
   User.findById(req.session.user._id)
-  .then(user => {
+    .then((user) => {
       req.user = user;
+      console.log("Active user: " + req.user);
       next();
-  })
-  .catch(err => console.log(err));
+    })
+    .catch((err) => console.log(err));
+});
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  next();
 });
 
 // routes
-app.use('/admin', adminRoutes);
-app.use('/shop', shopRoutes);
-app.use('/auth', authRoutes);
-app.use('/', shopRoutes);
+app.use("/admin", adminRoutes);
+app.use("/shop", shopRoutes);
+app.use("/auth", authRoutes);
+app.use("/", shopRoutes);
 app.use(errorController.get404Page);
 
-mongoose.connect(
-  MONGODB_URI, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true 
-})
-.then( result => {
-  app.listen(port);
-  console.log("Server is started!");
-})
-.catch( err => {
-  console.log(err);
-});
+mongoose
+  .connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((result) => {
+    app.listen(port);
+    console.log("Server is started!");
+  })
+  .catch((err) => {
+    console.log(err);
+  });

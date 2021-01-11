@@ -29,6 +29,7 @@
                                         <div>
                                             <p><%= p.quantity %></p>
                                             <form action="/shop/delete-from-cart" method="POST">
+                                                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
                                                 <input type="hidden" name="productId" value="<%= p.productId._id %>">
                                                 <button class="icon-button" type="submit">
                                                     <img height="16" alt="Delete" width="16" src="/zondicons/trash.svg" />
@@ -67,6 +68,7 @@
                                 <td class="go-to-checkout">
                                     <div>
                                         <form action="/shop/checkout" method="post">
+                                             <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
                                             <button class="primary" type="submit">Create order!</button>
                                         </form>
                                     </div>
