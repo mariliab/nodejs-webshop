@@ -1,93 +1,151 @@
 <header class="main-header">
-    <!-- DESKTOP -->
-    <div class="backdrop"></div>
-    <nav class="main-header-nav">
-        <ul class="main-header-item-list">
-            <li class="main-header-item">
-                <a href="/" class="<%= path === '/' ? 'active' : ''%>">Shop</a>
+  <!-- DESKTOP -->
+  <div class="backdrop"></div>
+  <nav class="main-header-nav">
+    <ul class="main-header-item-list">
+      <li class="main-header-item">
+        <a href="/" class="<%= path === '/' ? 'active' : ''%>">Shop</a>
+      </li>
+      <li class="main-header-item">
+        <a
+          href="/shop/products"
+          class="<%= path === '/products' ? 'active' : ''%>"
+          >Products</a
+        >
+      </li>
+      <% if (isAuthenticated) { %>
+      <li class="main-header-item">
+        <a href="/shop/orders" class="<%= path === '/orders' ? 'active' : ''%>"
+          >Orders</a
+        >
+      </li>
+      <% } %>
+    </ul>
+    <ul class="right-main-header-item-list">
+      <% if (isAuthenticated) { %>
+      <li class="main-header-item">
+        <div class="dropdown closed">
+          <img height="16" width="16" src="/zondicons/user.svg" />
+          <ul class="menu">
+            <li>
+              <a
+                href="/admin/products"
+                class="<%= path === '/admin/products' ? 'active' : ''%>"
+                >Admin</a
+              >
             </li>
-            <li class="main-header-item">
-                <a href="/shop/products" class="<%= path === '/products' ? 'active' : ''%>">Products</a>
+            <li>
+              <form
+                id="logout"
+                class="form-white-bg"
+                action="/auth/logout"
+                method="POST"
+              >
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <button type="submit">Log out<output></output></button>
+              </form>
             </li>
-            <% if (isAuthenticated) { %>
-                <li class="main-header-item">
-                    <a href="/shop/orders" class="<%= path === '/orders' ? 'active' : ''%>">Orders</a>
-                </li>
-            <% } %>
-        </ul>
-        <ul class="right-main-header-item-list">
-            <% if (isAuthenticated) { %>
-            <li class="main-header-item">
-                <div class="dropdown closed">
-                    <img height="16" width="16" src="/zondicons/user.svg" />
-                    <ul class="menu">
-                      <li><a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>">Admin</a></li> 
-                      <li>
-                        <form id="logout" class="form-white-bg" action="/auth/logout" method="POST">
-                            <button type="submit">Log out<output></output></button>
-                        </form>
-                      </li> 
-                    </ul>
-                  </div>
-            </li>
-            <% } %>
-            <% if (!isAuthenticated) { %>
-                <li class="main-header-item">
-                    <a href="/auth/login" class="<%= path === '/auth/login' ? 'active' : ''%>">Login</a>
-                </li>
-                <li class="main-header-item">
-                    <a href="/auth/signup" class="<%= path === '/auth/signup' ? 'active' : ''%>">Sign up</a>
-                </li>
-                <% } %>
-            <li class="main-header-item-icon">
-                <a href="/shop/cart" class="<%= path === '/cart' ? 'active' : ''%>"><img height="16" width="16" src="/zondicons/location-shopping.svg" /></a>
-            </li>
-        </ul>
-    </nav>
-
-    <!-- MOBILE -->
-    <div id="mobile-menu-toggle">
-        <div id="mobile-menu-toggle-button"><img height="16" width="16" src="/zondicons/menu.svg" /></div>
-        <div class="flex">
-            <% if (isAuthenticated) { %>
-                <li class="main-header-item">
-                    <div class="dropdown closed">
-                        <img height="16" width="16" src="/zondicons/user.svg" />
-                        <ul class="menu">
-                          <li><a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>">Admin</a></li> 
-                          <li>
-                            <form id="logout" class="form-white-bg" action="/auth/logout" method="POST">
-                                <button type="submit">Log out<output></output></button>
-                            </form>
-                          </li> 
-                        </ul>
-                      </div>
-                </li>
-                <% } %>
-                <% if (!isAuthenticated) { %>
-                    <li class="main-header-item">
-                        <a href="/auth/login" class="<%= path === '/auth/login' ? 'active' : ''%>">Login</a>
-                    </li>
-                    <li class="main-header-item">
-                        <a href="/auth/signup" class="<%= path === '/auth/signup' ? 'active' : ''%>">Sign up</a>
-                    </li>
-                <% } %>
-                <a href="/shop/cart" class="<%= path === '/cart' ? 'active' : ''%>"><img height="16" width="16" src="/zondicons/location-shopping.svg" /></a>
+          </ul>
         </div>
+      </li>
+      <% } %> <% if (!isAuthenticated) { %>
+      <li class="main-header-item">
+        <a
+          href="/auth/login"
+          class="<%= path === '/auth/login' ? 'active' : ''%>"
+          >Login</a
+        >
+      </li>
+      <li class="main-header-item">
+        <a
+          href="/auth/signup"
+          class="<%= path === '/auth/signup' ? 'active' : ''%>"
+          >Sign up</a
+        >
+      </li>
+      <% } %>
+      <li class="main-header-item-icon">
+        <a href="/shop/cart" class="<%= path === '/cart' ? 'active' : ''%>"
+          ><img height="16" width="16" src="/zondicons/location-shopping.svg"
+        /></a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- MOBILE -->
+  <div id="mobile-menu-toggle">
+    <div id="mobile-menu-toggle-button">
+      <img height="16" width="16" src="/zondicons/menu.svg" />
     </div>
-    <nav class="mobile-main-header-nav">
-        <ul class="mobile-main-header-item-list">
-            <li class="mobile-main-header-item">
-                <a href="/" class="<%= path === '/' ? 'active' : ''%>">Shop</a>
+    <div class="flex">
+      <% if (isAuthenticated) { %>
+      <li class="main-header-item">
+        <div class="dropdown closed">
+          <img height="16" width="16" src="/zondicons/user.svg" />
+          <ul class="menu">
+            <li>
+              <a
+                href="/admin/products"
+                class="<%= path === '/admin/products' ? 'active' : ''%>"
+                >Admin</a
+              >
             </li>
-            <li class="mobile-main-header-item">
-                <a href="/shop/products" class="<%= path === '/shop/products' ? 'active' : ''%>">Products</a>
+            <li>
+              <form
+                id="logout"
+                class="form-white-bg"
+                action="/auth/logout"
+                method="POST"
+              >
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <button type="submit">Log out<output></output></button>
+              </form>
             </li>
-            <% if (isAuthenticated) { %>
-                <li class="mobile-main-header-item">
-                    <a href="/shop/orders" class="<%= path === '/shop/orders' ? 'active' : ''%>">Orders</a>
-                </li>
-            <% } %>
-        </ul>
-    </nav>
+          </ul>
+        </div>
+      </li>
+      <% } %> <% if (!isAuthenticated) { %>
+      <li class="main-header-item">
+        <a
+          href="/auth/login"
+          class="<%= path === '/auth/login' ? 'active' : ''%>"
+          >Login</a
+        >
+      </li>
+      <li class="main-header-item">
+        <a
+          href="/auth/signup"
+          class="<%= path === '/auth/signup' ? 'active' : ''%>"
+          >Sign up</a
+        >
+      </li>
+      <% } %>
+      <a href="/shop/cart" class="<%= path === '/cart' ? 'active' : ''%>"
+        ><img height="16" width="16" src="/zondicons/location-shopping.svg"
+      /></a>
+    </div>
+  </div>
+  <nav class="mobile-main-header-nav">
+    <ul class="mobile-main-header-item-list">
+      <li class="mobile-main-header-item">
+        <a href="/" class="<%= path === '/' ? 'active' : ''%>">Shop</a>
+      </li>
+      <li class="mobile-main-header-item">
+        <a
+          href="/shop/products"
+          class="<%= path === '/shop/products' ? 'active' : ''%>"
+          >Products</a
+        >
+      </li>
+      <% if (isAuthenticated) { %>
+      <li class="mobile-main-header-item">
+        <a
+          href="/shop/orders"
+          class="<%= path === '/shop/orders' ? 'active' : ''%>"
+          >Orders</a
+        >
+      </li>
+      <% } %>
+    </ul>
+  </nav>
 </header>

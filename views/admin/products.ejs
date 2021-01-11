@@ -6,7 +6,10 @@
 <body>
     <%- include('../includes/navigation.ejs') %>
     <main>
-        <% if (isAuthenticated) { %>
+        <% if (isAuthenticated && user) { %>
+        <div>
+            <%= user.email %>
+        </div>
         <div class="page-header">
             <div>
                 <h1>Products</h1>
@@ -37,6 +40,7 @@
                                 <div>
                                     <a class="btn-link edit-product" href="/admin/edit-product/<%= product._id %>">Edit</a>
                                     <form action="/admin/delete-product" method="POST">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
                                         <input type="hidden" name="productId" value="<%= product._id %>">
                                         <button class="delete-product" type="submit">Delete</button>
                                     </form>

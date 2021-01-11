@@ -1,32 +1,24 @@
-const path = require('path');
-const express = require('express');
+const path = require("path");
+const express = require("express");
 const router = express.Router();
 
-//controllers
-const shopController = require('../controllers/shop');
+const shopController = require("../controllers/shop");
+const isAuth = require("../middleware/is-auth");
 
-// // / => GET STARTPAGE
-router.get('/', shopController.getStartPage);
+router.get("/", shopController.getStartPage);
 
-// / => GET
-router.get('/products', shopController.getAllProducts);
+router.get("/products", shopController.getAllProducts);
 
-// / => GET PRODUCT
-router.get('/products/:productId', shopController.getProduct);
+router.get("/products/:productId", shopController.getProduct);
 
-// // / => GET ORDERS
-router.get('/orders', shopController.getOrders);
+router.get("/orders", isAuth, shopController.getOrders);
 
-// // / => GET CART
-router.get('/cart', shopController.getCart);
+router.get("/cart", isAuth, shopController.getCart);
 
-// // / => POST ADD TO CART
-router.post('/add-to-cart', shopController.postToCart);
+router.post("/add-to-cart", isAuth, shopController.postToCart);
 
-// // / => POST DELETE FROM CART
-router.post('/delete-from-cart', shopController.deleteFromCart);
+router.post("/delete-from-cart", isAuth, shopController.deleteFromCart);
 
-// // / => POST CHECKOUT PAGE
-router.post('/checkout', shopController.createOrder);
+router.post("/checkout", isAuth, shopController.createOrder);
 
-module.exports = router; 
+module.exports = router;
