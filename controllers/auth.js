@@ -44,7 +44,7 @@ exports.getLogin = (req, res, next) => {
   res.render("auth/login", {
     pageTitle: "Login",
     path: "/login",
-    isAuthenticated: req.session.isLoggedIn,
+    errorMessage: req.flash("error"),
   });
 };
 
@@ -54,7 +54,8 @@ exports.postLogin = (req, res, next) => {
   User.findOne({ email: email })
     .then((user) => {
       if (!user) {
-        res.send("User does not exist!");
+        req.flash("error", "Invalid user or password");
+        res.redirect("/auth/login");
       }
       bcrypt
         .compare(password, user.password)
@@ -67,11 +68,12 @@ exports.postLogin = (req, res, next) => {
               res.redirect("/");
             });
           }
-          res.send("Wrong password!");
+          req.flash("error", "Invalid password");
+          res.redirect("/auth/login");
         })
         .catch((err) => {
           console.log(err);
-          res.send("Wrong password!");
+          res.redirect("/auth/login");
         });
     })
     .catch((err) => console.log(err));
