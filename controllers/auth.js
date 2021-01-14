@@ -1,11 +1,23 @@
-const User = require("../models/user");
 const bcrypt = require("bcryptjs");
+const nodemailer = require("nodemailer");
+const sendgridTransport = require("nodemailer-sendgrid-transport");
+
+const transporter = nodemailer.createTransport(
+  sendgridTransport({
+    auth: {
+      api_key: process.env.SENDGRID_API_KEY,
+    },
+  })
+);
+
+const User = require("../models/user");
 
 exports.getSignup = (req, res, next) => {
   res.render("auth/signup", {
     pageTitle: "Sign up",
     path: "/signup",
     isAuthenticated: false,
+    errorMessage: req.flash("error"),
   });
 };
 
@@ -16,7 +28,12 @@ exports.postSignup = (req, res, next) => {
   User.findOne({ email: email })
     .then((user) => {
       if (user) {
-        res.send("User already exists!");
+        req.flash("error", "User already exists");
+        return res.redirect("/auth/signup");
+      }
+      if (password != confirmPassword) {
+        req.flash("error", "Passwords don't match");
+        return res.redirect("/auth/signup");
       }
       return bcrypt
         .hash(password, 12)
@@ -33,6 +50,15 @@ exports.postSignup = (req, res, next) => {
         })
         .then((result) => {
           res.redirect("/auth/login");
+          return transporter.sendMail({
+            to: email,
+            from: "hello@mariliabognandi.com",
+            subject: "Signup successful!",
+            html: "<h1>Thanks for signing up!</h1>",
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
     })
     .catch((err) => {

@@ -7,7 +7,12 @@
     <%- include('../includes/navigation.ejs') %>
     <main id="login-page">
         <h1 class="text-center">Sign up</h1>
-        <form id="login" class="form-white-bg" action="/auth/signup" method="POST">
+        <form id="signup" class="form-white-bg" action="/auth/signup" method="POST">
+            <% if (errorMessage) { %>
+                <div class="error-message">
+                    <p><%= errorMessage %></p>
+                </div>
+            <% } %>
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
             <div class="form-control">
                 <label for="email">E-mail</label>                    
