@@ -7,6 +7,12 @@
   box-shadow: 0 20px 25px 0px rgba(0, 0, 0, 0.05);
 }
 
+form a {
+  color: cornflowerblue;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 @media screen and (max-width: 991px) {
   form {
     max-width: 100%;
@@ -18,7 +24,8 @@
     padding: 3rem;
   }
   form#login,
-  form#signup {
+  form#signup,
+  form#reset-password {
     max-width: 33%;
     margin: 0 auto;
   }
@@ -74,5 +81,9 @@ form button[type="submit"]:hover {
 }
 .error-message p {
   color: red;
+  margin-top: 0;
+}
+.alert-message p {
+  color: green;
   margin-top: 0;
 }

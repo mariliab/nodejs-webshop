@@ -16,9 +16,42 @@ exports.getSignup = (req, res, next) => {
   res.render("auth/signup", {
     pageTitle: "Sign up",
     path: "/signup",
-    isAuthenticated: false,
     errorMessage: req.flash("error"),
   });
+};
+
+exports.getResetPassword = (req, res, next) => {
+  res.render("auth/reset-password", {
+    pageTitle: "Reset password",
+    path: "/reset-password",
+    errorMessage: req.flash("error"),
+    alertMessage: req.flash("alert"),
+  });
+};
+
+exports.postResetPassword = (req, res, next) => {
+  const email = req.body.email;
+  User.findOne({ email: email })
+    .then((user) => {
+      if (!user) {
+        req.flash("error", "Email does not exist");
+        return res.redirect("/auth/reset-password");
+      }
+      req.flash(
+        "alert",
+        "Email has been sent to " + email + ", check your inbox!"
+      );
+      res.redirect("/auth/reset-password");
+      return transporter.sendMail({
+        to: email,
+        from: "hello@mariliabognandi.com",
+        subject: "Reset password",
+        html: "<h1>Reset password!</h1>",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 exports.postSignup = (req, res, next) => {
